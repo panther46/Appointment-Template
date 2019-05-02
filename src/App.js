@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
+import Header from './Componentes/Header.js';
+import AgregarCita from './Componentes/AgregarCita.js';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends Component {
+
+  crearCita = () => {
+    console.log("desde APP.JS");
+  }
+
+  render(){
+    return(
+
+      <div className= "container">
+        <Header
+          titulo = {'Plantilla para solicitud de citas'}
+        />
+        <div className = "row">
+          <div className = "col-md-6">
+            <AgregarCita
+              crearCita = {this.crearCita}
+            />
+          </div>
+        </div>
+        
+      </div>
+    );
+  }
 }
+    
 
 export default App;
