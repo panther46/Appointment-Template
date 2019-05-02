@@ -12,8 +12,10 @@ class AgregarCita extends Component{
     horaRef = React.createRef();
     sintomasRef = React.createRef();
 
-
-    state = {}
+// En el estado local de este componente usamos la propiedad "Error" iniciallmente false para construir logica de validacion
+    state = {
+        error: false
+    }
 
     crearNuevaCita = (e) =>{
         e.preventDefault();
@@ -24,7 +26,14 @@ class AgregarCita extends Component{
               fecha = this.fechaRef.current.value,
               hora = this.horaRef.current.value,
               sintomas = this.sintomasRef.current.value;
-        // Object Literal Enhancement (El nombre de la propiedad del objeto es igual a la variable previamente declarada).
+
+        // Validacion en caso de que los campos esten vacios
+        if ( mascota === '' || dueño === '' || fecha === '' || hora === '' || sintomas === '' ){
+            this.setState({
+                error: true
+            })
+        } else{
+            // Object Literal Enhancement (El nombre de la propiedad del objeto es igual a la variable previamente declarada).
         const nuevaCita = {
             id:uuid(),
             mascota,
@@ -32,15 +41,27 @@ class AgregarCita extends Component{
             fecha,
             hora,
             sintomas
+         }
 
-        }
         // Se envia el objeto hacia el padre
         this.props.crearCita(nuevaCita);
         // Reiniciar el formulario 
         e.currentTarget.reset();
+        // Elminando el error, sin importar que el estado inicial este en false
+        this.setState({
+            error: false
+        })
+    
+
+        }
+
+
+        
     }
     
     render(){
+        // almacenamos el estado del error en una variable
+        let errorValidator = this.state.error;
         return(
             <div className = "card mt-5">
                 <div className = "card-body">
@@ -83,6 +104,8 @@ class AgregarCita extends Component{
                                     </div>
                                 </div>
                         </form>
+                        
+                        {errorValidator ? <div className = "alert alert-danger text-center">Todos los campos son obligatorios</div> : '' }
                 </div>
                 
             </div>
