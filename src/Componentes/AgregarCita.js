@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import uuid from 'uuid';
 
 
 class AgregarCita extends Component{
@@ -17,14 +18,26 @@ class AgregarCita extends Component{
     crearNuevaCita = (e) =>{
         e.preventDefault();
 
-        console.log(this.nombreMascotaRef.current.value);
-        console.log(this.nombreDueñoRef.current.value);
-        console.log(this.fechaRef.current.value);
-        console.log(this.horaRef.current.value);
-        console.log(this.sintomasRef.current.value);
+        // Creando el objeto con los datos obtenidos por medio de ref, se crean las variables en primera instancia
+        const mascota = this.nombreMascotaRef.current.value,
+              dueño = this.nombreDueñoRef.current.value,
+              fecha = this.fechaRef.current.value,
+              hora = this.horaRef.current.value,
+              sintomas = this.sintomasRef.current.value;
+        // Object Literal Enhancement (El nombre de la propiedad del objeto es igual a la variable previamente declarada).
+        const nuevaCita = {
+            id:uuid(),
+            mascota,
+            dueño,
+            fecha,
+            hora,
+            sintomas
 
-        this.props.crearCita();
-
+        }
+        // Se envia el objeto hacia el padre
+        this.props.crearCita(nuevaCita);
+        // Reiniciar el formulario 
+        e.currentTarget.reset();
     }
     
     render(){
