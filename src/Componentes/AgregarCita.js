@@ -54,9 +54,6 @@ class AgregarCita extends Component{
     
 
         }
-
-
-        
     }
     
     render(){

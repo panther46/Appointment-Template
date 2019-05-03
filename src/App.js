@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Header from './Componentes/Header.js';
 import AgregarCita from './Componentes/AgregarCita.js';
+import ListaCitas from './Componentes/ListaCitas.js';
 
 
 
@@ -23,8 +24,6 @@ class App extends Component {
     console.log(citas);
   }
 
-  
-
   render(){
     return(
 
@@ -38,9 +37,14 @@ class App extends Component {
               crearCita = {this.crearCita}
             />
           </div>
+          <div className = "col-md-6">
+            <ListaCitas
+            citasProps = {this.state.citas}
+             />
+          </div>
         </div>
         
-      </div>
+    </div>
     );
   }
 }
