@@ -19,6 +19,7 @@ const ListaCitas = (props) => {
                             <Cita
                                 key = {cita}
                                 info = {props.citasProps[cita]}
+                                borrarCita = {props.borrarCita}
                             />
                         ))}
                     
